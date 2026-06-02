@@ -1,5 +1,7 @@
 import "./App.css";
+import FilterDropdown from "./FilterDropdown";
 import Search from "./Search";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function App() {
   return (
@@ -7,6 +9,8 @@ function App() {
       <h1>TODO LIST</h1>
       <div className="filter-bar">
         <Search />
+        <FilterDropdown />
+        <ThemeSwitcher />
       </div>
     </div>
   );
