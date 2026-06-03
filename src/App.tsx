@@ -1,5 +1,6 @@
 import "./App.css";
 import FilterDropdown from "./FilterDropdown";
+import Notes from "./Notes";
 import Search from "./Search";
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -12,6 +13,7 @@ function App() {
         <FilterDropdown />
         <ThemeSwitcher />
       </div>
+      <Notes />
     </div>
   );
 }
