@@ -182,6 +182,12 @@ h1 {
         width: 18px;
         height: 18px;
 
+        cursor: pointer;
+
+        &:hover {
+          filter: brightness(80%);
+        }
+
         img {
           width: 100%;
           height: 100%;

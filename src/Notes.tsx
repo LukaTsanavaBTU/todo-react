@@ -9,7 +9,7 @@ function Notes() {
     { name: "Study", done: false, id: 4 },
   ]);
 
-  function handleClick(id: number) {
+  function handleMark(id: number) {
     const notesCopy = structuredClone(notesList);
     const targetNoteIndex = notesCopy.findIndex((note) => note.id === id);
     if (targetNoteIndex !== -1) {
@@ -19,6 +19,10 @@ function Notes() {
     }
   }
 
+  function handleDelete(id: number) {
+    setNotesList(notesList.filter((note) => note.id !== id));
+  }
+
   return (
     <ul className="notes-list">
       {notesList.map((note, index, arr) => (
@@ -26,7 +30,8 @@ function Notes() {
           <Note
             name={note.name}
             done={note.done}
-            onClick={() => handleClick(note.id)}
+            onMark={() => handleMark(note.id)}
+            onDelete={() => handleDelete(note.id)}
           />{" "}
           {index !== arr.length - 1 && <div className="note-separator"></div>}
         </li>

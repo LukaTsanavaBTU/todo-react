@@ -4,17 +4,19 @@ import type { JSX } from "react/jsx-runtime";
 function Note({
   name,
   done,
-  onClick,
+  onMark,
+  onDelete,
 }: {
   name: string;
   done: boolean;
-  onClick: MouseEventHandler;
+  onMark: MouseEventHandler;
+  onDelete: MouseEventHandler;
 }) {
   let content: JSX.Element;
   if (done) {
     content = (
       <div className="note done">
-        <div className="box-name" onClick={onClick}>
+        <div className="box-name" onClick={onMark}>
           <div className="checkbox marked">
             <img src="/icons/checkmark.svg" alt="done" />
           </div>
@@ -25,7 +27,7 @@ function Note({
   } else {
     content = (
       <div className="note">
-        <div className="box-name" onClick={onClick}>
+        <div className="box-name" onClick={onMark}>
           <div className="checkbox"></div>
           <p>{name}</p>
         </div>
@@ -33,7 +35,7 @@ function Note({
           <button>
             <img src="/icons/edit.svg" alt="edit" />
           </button>
-          <button>
+          <button onClick={onDelete}>
             <img src="/icons/delete.svg" alt="delete" />
           </button>
         </div>
