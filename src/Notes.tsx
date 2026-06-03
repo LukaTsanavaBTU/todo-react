@@ -1,13 +1,27 @@
 import { useState } from "react";
 import Note from "./Note";
+import type { FiltersType, NoteType } from "./App";
 
-function Notes() {
-  const [notesList, setNotesList] = useState([
+function Notes({ search, filter }: { search: string; filter: FiltersType }) {
+  const [notesList, setNotesList] = useState<NoteType[]>([
     { name: "Do laundry", done: false, id: 1 },
     { name: "Walk the dogs", done: true, id: 2 },
     { name: "Make dinner", done: false, id: 3 },
     { name: "Study", done: false, id: 4 },
   ]);
+
+  let filteredList = notesList;
+
+  if (filter && filter !== "all") {
+    filteredList = filteredList.filter((note) =>
+      filter === "done" ? note.done : !note.done,
+    );
+  }
+  if (search) {
+    filteredList = filteredList.filter((note) =>
+      note.name.toLowerCase().includes(search.toLowerCase()),
+    );
+  }
 
   function handleMark(id: number) {
     const notesCopy = structuredClone(notesList);
@@ -25,7 +39,7 @@ function Notes() {
 
   return (
     <ul className="notes-list">
-      {notesList.map((note, index, arr) => (
+      {filteredList.map((note, index, arr) => (
         <li key={note.id}>
           <Note
             name={note.name}
