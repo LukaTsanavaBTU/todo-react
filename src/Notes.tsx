@@ -1,14 +1,16 @@
 import { useState } from "react";
 import Note from "./Note";
 import type { FiltersType, NoteType } from "./App";
+import Dialog from "./Dialog";
 
 function Notes({ search, filter }: { search: string; filter: FiltersType }) {
   const [notesList, setNotesList] = useState<NoteType[]>([
-    { name: "Do laundry", done: false, id: 1 },
-    { name: "Walk the dogs", done: true, id: 2 },
-    { name: "Make dinner", done: false, id: 3 },
-    { name: "Study", done: false, id: 4 },
+    { name: "Do laundry", done: false, id: "0000000000001" },
+    { name: "Walk the dogs", done: true, id: "0000000000002" },
+    { name: "Make dinner", done: false, id: "0000000000003" },
+    { name: "Study", done: false, id: "0000000000004" },
   ]);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   let filteredList = notesList;
 
@@ -23,7 +25,7 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
     );
   }
 
-  function handleMark(id: number) {
+  function handleMark(id: string) {
     const notesCopy = structuredClone(notesList);
     const targetNoteIndex = notesCopy.findIndex((note) => note.id === id);
     if (targetNoteIndex !== -1) {
@@ -33,8 +35,28 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
     }
   }
 
-  function handleDelete(id: number) {
+  function handleDelete(id: string) {
     setNotesList(notesList.filter((note) => note.id !== id));
+  }
+
+  function handleDialogClose() {
+    setIsDialogOpen(false);
+  }
+
+  function handleDataChange(newVal: string, id?: string) {
+    if (id) {
+      const notesCopy = structuredClone(notesList);
+      const targetIndex = notesCopy.findIndex((note) => note.id === id);
+      if (targetIndex) {
+        notesCopy[targetIndex].name = newVal;
+        setNotesList(notesCopy);
+      }
+    } else {
+      setNotesList([
+        ...notesList,
+        { name: newVal, done: false, id: String(Date.now()) },
+      ]);
+    }
   }
 
   return (
@@ -53,10 +75,15 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
         ))}
       </ul>
       <div className="add-button-wrapper">
-        <button className="add-button">
+        <button className="add-button" onClick={() => setIsDialogOpen(true)}>
           <img src="/icons/add.svg" alt="add" />
         </button>
       </div>
+      <Dialog
+        isOpen={isDialogOpen}
+        onClose={handleDialogClose}
+        onDataChange={handleDataChange}
+      />
     </>
   );
 }

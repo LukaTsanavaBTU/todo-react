@@ -268,3 +268,81 @@ h1 {
     }
   }
 }
+
+dialog {
+  border-radius: 16px;
+  border: none;
+  outline: none;
+
+  width: 500px;
+  height: 300px;
+
+  padding: 18px 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    font-family: var(--font-stack) "Kanit";
+  }
+
+  input {
+    padding: 12px 16px;
+
+    width: 100%;
+
+    border-radius: 6px;
+    border: var(--primary) 1px solid;
+
+    color: var(--font-black);
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-stack), "Inter";
+
+    &::placeholder {
+      color: var(--primary-desaturated);
+      font-family: var(--font-stack), "Inter";
+
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .dialog-actions {
+    flex: 1;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    button {
+      font-size: 16px;
+      font-family: var(--font-stack) "Kanit";
+      font-weight: 600;
+
+      border: 1px var(--primary) solid;
+      border-radius: 5px;
+
+      padding: 10px 22px;
+
+      &.dialog-cancel {
+        background-color: transparent;
+        color: var(--primary);
+      }
+      &.dialog-accept {
+        background-color: var(--primary);
+        color: var(--font-white);
+      }
+    }
+  }
+}

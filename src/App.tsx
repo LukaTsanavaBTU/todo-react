@@ -10,7 +10,7 @@ export type FiltersType = "all" | "done" | "todo";
 export interface NoteType {
   name: string;
   done: boolean;
-  id: number;
+  id: string;
 }
 
 function App() {
