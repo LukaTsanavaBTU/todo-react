@@ -20,7 +20,7 @@ function Note({
       <div className="note done">
         <div className="box-name" onClick={onMark}>
           <div className="checkbox marked">
-            <img src="/icons/checkmark.svg" alt="done" />
+            <img src="icons/checkmark.svg" alt="done" />
           </div>
           <p>{name}</p>
         </div>
@@ -35,10 +35,10 @@ function Note({
         </div>
         <div className="note-actions">
           <button onClick={onEdit} className="edit-action">
-            <img src="/icons/edit.svg" alt="edit" />
+            <img src="icons/edit.svg" alt="edit" />
           </button>
           <button onClick={onDelete} className="delete-action">
-            <img src="/icons/delete.svg" alt="delete" />
+            <img src="icons/delete.svg" alt="delete" />
           </button>
         </div>
       </div>

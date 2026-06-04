@@ -11,7 +11,7 @@ export function ThemeSwitcher({
   return (
     <button className="theme-switcher" onClick={onThemeChange}>
       <img
-        src={theme === "light" ? "/icons/light.svg" : "/icons/dark.svg"}
+        src={theme === "light" ? "icons/light.svg" : "icons/dark.svg"}
         alt="theme"
       />
     </button>

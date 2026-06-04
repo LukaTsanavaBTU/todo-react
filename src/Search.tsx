@@ -16,7 +16,7 @@ function Search({
         onChange={(e) => onSearchChange(e.target.value)}
       />
       <button>
-        <img src="/icons/search.svg" alt="" />
+        <img src="icons/search.svg" alt="" />
       </button>
     </div>
   );

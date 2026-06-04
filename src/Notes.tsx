@@ -95,13 +95,13 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
         </ul>
       ) : (
         <div className="empty-list-wrapper">
-          <img src="/images/empty.png" alt="" />
+          <img src="images/empty.png" alt="" />
           <p>Empty...</p>
         </div>
       )}
       <div className="add-button-wrapper">
         <button className="add-button" onClick={handleAddCLick}>
-          <img src="/icons/add.svg" alt="add" />
+          <img src="icons/add.svg" alt="add" />
         </button>
       </div>
       <Dialog
