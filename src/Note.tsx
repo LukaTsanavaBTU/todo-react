@@ -34,10 +34,10 @@ function Note({
           <p>{name}</p>
         </div>
         <div className="note-actions">
-          <button onClick={onEdit}>
+          <button onClick={onEdit} className="edit-action">
             <img src="/icons/edit.svg" alt="edit" />
           </button>
-          <button onClick={onDelete}>
+          <button onClick={onDelete} className="delete-action">
             <img src="/icons/delete.svg" alt="delete" />
           </button>
         </div>

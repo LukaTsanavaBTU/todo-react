@@ -7,6 +7,8 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 export type FiltersType = "all" | "done" | "todo";
 
+export type ThemesType = "light" | "dark";
+
 export interface NoteType {
   name: string;
   done: boolean;
@@ -16,6 +18,7 @@ export interface NoteType {
 function App() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<FiltersType>("all");
+  const [theme, setTheme] = useState<ThemesType>("light");
 
   function onSearchChangeHandler(newVal: string) {
     setSearch(newVal);
@@ -25,8 +28,12 @@ function App() {
     setFilter(newVal);
   }
 
+  function themeChangeHandler() {
+    setTheme(theme === "light" ? "dark" : "light");
+  }
+
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${theme}`}>
       <h1>TODO LIST</h1>
       <div className="filter-bar">
         <Search search={search} onSearchChange={onSearchChangeHandler} />
@@ -34,7 +41,7 @@ function App() {
           filter={filter}
           onFilterChange={onFilterChangeHandler}
         />
-        <ThemeSwitcher />
+        <ThemeSwitcher theme={theme} onThemeChange={themeChangeHandler} />
       </div>
       <Notes search={search} filter={filter} />
     </div>

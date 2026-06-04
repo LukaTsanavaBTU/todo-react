@@ -76,20 +76,29 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
 
   return (
     <>
-      <ul className="notes-list">
-        {filteredList.map((note, index, arr) => (
-          <li key={note.id}>
-            <Note
-              name={note.name}
-              done={note.done}
-              onMark={() => handleMark(note.id)}
-              onDelete={() => handleDelete(note.id)}
-              onEdit={() => handleEditClick(note)}
-            />{" "}
-            {index !== arr.length - 1 && <div className="note-separator"></div>}
-          </li>
-        ))}
-      </ul>
+      {notesList.length ? (
+        <ul className="notes-list">
+          {filteredList.map((note, index, arr) => (
+            <li key={note.id}>
+              <Note
+                name={note.name}
+                done={note.done}
+                onMark={() => handleMark(note.id)}
+                onDelete={() => handleDelete(note.id)}
+                onEdit={() => handleEditClick(note)}
+              />{" "}
+              {index !== arr.length - 1 && (
+                <div className="note-separator"></div>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="empty-list-wrapper">
+          <img src="/images/empty.png" alt="" />
+          <p>Empty...</p>
+        </div>
+      )}
       <div className="add-button-wrapper">
         <button className="add-button" onClick={handleAddCLick}>
           <img src="/icons/add.svg" alt="add" />
