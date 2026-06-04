@@ -20,7 +20,7 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
       filter === "done" ? note.done : !note.done,
     );
   }
-  if (search) {
+  if (search.trim()) {
     filteredList = filteredList.filter((note) =>
       note.name.toLowerCase().includes(search.toLowerCase()),
     );

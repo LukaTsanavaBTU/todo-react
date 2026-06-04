@@ -33,9 +33,11 @@ function Dialog({
   }
 
   function onAcceptHandler() {
-    onDataChange(text);
-    onClose();
-    setText("");
+    if (text.trim()) {
+      onDataChange(text);
+      onClose();
+      setText("");
+    }
   }
 
   function enterPressHandler(e: React.KeyboardEvent<HTMLInputElement>) {
