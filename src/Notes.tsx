@@ -20,9 +20,11 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
       filter === "done" ? note.done : !note.done,
     );
   }
-  if (search.trim()) {
+
+  const cleanedSearch = search.trim();
+  if (cleanedSearch) {
     filteredList = filteredList.filter((note) =>
-      note.name.toLowerCase().includes(search.toLowerCase()),
+      note.name.toLowerCase().includes(cleanedSearch.toLowerCase()),
     );
   }
 

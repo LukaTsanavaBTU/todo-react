@@ -33,8 +33,9 @@ function Dialog({
   }
 
   function onAcceptHandler() {
-    if (text.trim()) {
-      onDataChange(text);
+    const cleanedText = text.trim();
+    if (cleanedText) {
+      onDataChange(cleanedText);
       onClose();
       setText("");
     }
