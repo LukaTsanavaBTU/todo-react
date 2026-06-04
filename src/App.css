@@ -7,9 +7,9 @@
 :root {
   --primary: #6c63ff;
   --primary-desaturated: #c3c1e5;
-  --font-black: #252525;
-  --font-black-light: #25252580;
-  --font-white: #f7f7f7;
+  --black: #252525;
+  --black-light: #25252580;
+  --white: #f7f7f7;
 
   --font-stack: system-ui, sans-serif;
 
@@ -19,6 +19,8 @@
 body {
   display: flex;
   justify-content: center;
+
+  background-color: var(--white);
 }
 
 .wrapper {
@@ -63,10 +65,12 @@ h1 {
       border-radius: 6px;
       border: var(--primary) 1px solid;
 
-      color: var(--font-black);
+      color: var(--black);
       font-size: 16px;
       font-weight: 500;
       font-family: var(--font-stack), "Inter";
+
+      background-color: transparent;
 
       &::placeholder {
         color: var(--primary-desaturated);
@@ -113,7 +117,7 @@ h1 {
 
     background-color: var(--primary);
 
-    color: var(--font-white);
+    color: var(--white);
     font-family: var(--font-stack), "Kanit";
     font-size: 18px;
     font-weight: 600;
@@ -143,7 +147,7 @@ h1 {
 .notes-list {
   width: 520px;
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   list-style-type: none;
 
   .note {
@@ -167,7 +171,7 @@ h1 {
         font-family: var(--font-stack), "Kanit";
         font-size: 20px;
         font-weight: 600;
-        color: var(--font-black);
+        color: var(--black);
       }
     }
 
@@ -203,7 +207,7 @@ h1 {
   .note.done {
     p {
       font-weight: 500;
-      color: var(--font-black-light);
+      color: var(--black-light);
       text-decoration: line-through;
     }
   }
@@ -284,6 +288,8 @@ dialog {
   align-items: center;
   gap: 25px;
 
+  background-color: var(--white);
+
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.7);
   }
@@ -302,10 +308,12 @@ dialog {
     border-radius: 6px;
     border: var(--primary) 1px solid;
 
-    color: var(--font-black);
+    color: var(--black);
     font-size: 16px;
     font-weight: 500;
     font-family: var(--font-stack), "Inter";
+
+    background-color: transparent;
 
     &::placeholder {
       color: var(--primary-desaturated);
@@ -341,7 +349,7 @@ dialog {
       }
       &.dialog-accept {
         background-color: var(--primary);
-        color: var(--font-white);
+        color: var(--white);
       }
     }
   }

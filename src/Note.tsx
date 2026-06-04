@@ -6,11 +6,13 @@ function Note({
   done,
   onMark,
   onDelete,
+  onEdit,
 }: {
   name: string;
   done: boolean;
   onMark: MouseEventHandler;
   onDelete: MouseEventHandler;
+  onEdit: MouseEventHandler;
 }) {
   let content: JSX.Element;
   if (done) {
@@ -32,7 +34,7 @@ function Note({
           <p>{name}</p>
         </div>
         <div className="note-actions">
-          <button>
+          <button onClick={onEdit}>
             <img src="/icons/edit.svg" alt="edit" />
           </button>
           <button onClick={onDelete}>

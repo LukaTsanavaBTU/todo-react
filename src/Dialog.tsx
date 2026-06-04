@@ -29,6 +29,7 @@ function Dialog({
   function onCancelHandler(e: React.SyntheticEvent) {
     e.preventDefault();
     onClose();
+    setText("");
   }
 
   function onAcceptHandler() {
@@ -37,15 +38,22 @@ function Dialog({
     setText("");
   }
 
+  function enterPressHandler(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      onAcceptHandler();
+    }
+  }
+
   if (isOpen)
     return (
       <dialog ref={dialogRef} onClose={onCancelHandler}>
-        <h2>NEW NOTE</h2>
+        <h2>{initialText ? "EDIT NOTE" : "NEW NOTE"}</h2>
         <input
           type="text"
           placeholder="Input your note..."
           value={text}
           onChange={(e) => setText(e.target.value)}
+          onKeyDown={enterPressHandler}
         />
         <div className="dialog-actions">
           <button className="dialog-cancel" onClick={onCancelHandler}>

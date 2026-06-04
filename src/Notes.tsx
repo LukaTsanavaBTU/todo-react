@@ -11,6 +11,7 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
     { name: "Study", done: false, id: "0000000000004" },
   ]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState<NoteType | null>(null);
 
   let filteredList = notesList;
 
@@ -43,10 +44,12 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
     setIsDialogOpen(false);
   }
 
-  function handleDataChange(newVal: string, id?: string) {
-    if (id) {
+  function handleDataChange(newVal: string) {
+    if (selectedNote) {
       const notesCopy = structuredClone(notesList);
-      const targetIndex = notesCopy.findIndex((note) => note.id === id);
+      const targetIndex = notesCopy.findIndex(
+        (note) => note.id === selectedNote.id,
+      );
       if (targetIndex) {
         notesCopy[targetIndex].name = newVal;
         setNotesList(notesCopy);
@@ -59,6 +62,16 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
     }
   }
 
+  function handleAddCLick() {
+    setSelectedNote(null);
+    setIsDialogOpen(true);
+  }
+
+  function handleEditClick(note: NoteType) {
+    setSelectedNote(note);
+    setIsDialogOpen(true);
+  }
+
   return (
     <>
       <ul className="notes-list">
@@ -69,13 +82,14 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
               done={note.done}
               onMark={() => handleMark(note.id)}
               onDelete={() => handleDelete(note.id)}
+              onEdit={() => handleEditClick(note)}
             />{" "}
             {index !== arr.length - 1 && <div className="note-separator"></div>}
           </li>
         ))}
       </ul>
       <div className="add-button-wrapper">
-        <button className="add-button" onClick={() => setIsDialogOpen(true)}>
+        <button className="add-button" onClick={handleAddCLick}>
           <img src="/icons/add.svg" alt="add" />
         </button>
       </div>
@@ -83,6 +97,8 @@ function Notes({ search, filter }: { search: string; filter: FiltersType }) {
         isOpen={isDialogOpen}
         onClose={handleDialogClose}
         onDataChange={handleDataChange}
+        initialText={selectedNote?.name}
+        key={selectedNote?.id}
       />
     </>
   );
